@@ -6,49 +6,6 @@
     <title>Unity WebGL Player | emptyWeb</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="./ads.js"></script>
-    <script type="text/javascript" src="./local.js"></script>
-    <script type="text/javascript" src="./stickyBanner.js"></script>
-    <link rel="stylesheet" href="./stickyBanner.css">
-    <script>
-            // State save APIs
-            function getUserId() {
-          var userid = location.search.substring(1).split("&").find((a) => { return a.startsWith('userid') });
-          if (userid != null)
-              return userid.split("=")[1]
-          else
-              return "1234"
-      }
-      function getGameId() {
-          var gameid = location.search.substring(1).split("&").find((a) => { return a.startsWith('gameId') });
-          if (gameid != null)
-              return gameid.split("=")[1]
-          else
-              return "weegoon_kickloser"
-      }
-      function saveUserData(data){
-        const userState = saveUserState(jsonObj);   // call function from local.js
-        userAsset.then((info) => { 
-          console.log("Asset Saved: ", info); 
-        }).catch((error) => { 
-        console.log("Unable to save the user asset: ", error); 
-        });   
-      }
-      function getUserData(){
-          const userId = "nostra-user-001"; 
-          const index = "default"; 
-          const userState = GetUserStateByIndex(userId, index); 
-          userState.then((info) => { 
-            console.log("User State: ", info); 
-            unityInstance.SendMessage('StateManager', 'GetState', jsonString);
-          }).catch((error) => { 
-            console.log("Unable to get user data: ", error); 
-            unityInstance.SendMessage('StateManager', 'CreateUserState');
-          }); 
-      }
-    </script>
-    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -102,9 +59,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/emptyWeb.loader.js";
       var config = {
-        dataUrl: buildUrl + "/emptyWeb.data.br",
-        frameworkUrl: buildUrl + "/emptyWeb.framework.js.br",
-        codeUrl: buildUrl + "/emptyWeb.wasm.br",
+        dataUrl: buildUrl + "/emptyWeb.data.unityweb",
+        frameworkUrl: buildUrl + "/emptyWeb.framework.js.unityweb",
+        codeUrl: buildUrl + "/emptyWeb.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "emptyWeb",
